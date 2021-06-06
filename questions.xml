@@ -4,4 +4,12 @@
         <id>1</id>
         <title>Countries begining with 'G'</title>
     </question>
+    <question>
+        <id>2</id>
+        <title>US States starting in 'A'</title>
+    </question>
+    <question>
+        <id>3</id>
+        <title>Hosts of 'An Audience With'</title>
+    </question>
 </questionbank>

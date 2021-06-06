@@ -14,10 +14,26 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital@1&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital@1&family=Rajdhani&display=swap" rel="stylesheet">    </head>
     <body>
-        <h1>POINT-O-METER</h1>
+        <h1><a href="index.html">POINT-O-METER</a></h1>
         <div id="question-container" class="container">
             <h5 id="question-header">Question:</h5>
-            <p id="question">Countries containing the letter 'G'</p>
+            <p id="question">
+            <?php
+            $DATABASE_HOST = 'localhost';
+            $DATABASE_USER = 'root';
+            $DATABASE_PASS = '';
+            $DATABASE_NAME = 'pointometer';
+            
+            $mysqli = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+            $question_id = $_GET['id'];
+            $query = "SELECT * FROM questions WHERE id=".$question_id; 
+
+            if ($result = $mysqli->query($query)) {
+                $row = $result->fetch_assoc();
+                echo $row["question"];
+            }
+            ?>
+            </p>
         </div>
         <table id="answers" class="table table-hover">
             <thead>
@@ -28,13 +44,6 @@
             </thead>
             <tbody>
             <?php
-            $DATABASE_HOST = 'localhost';
-            $DATABASE_USER = 'root';
-            $DATABASE_PASS = '';
-            $DATABASE_NAME = 'pointometer';
-            
-            $mysqli = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-            $question_id = $_GET['id'];
             $query = "SELECT * FROM `question-".$question_id."` ORDER BY score DESC;";
             
             if ($result = $mysqli->query($query)) {

@@ -34,7 +34,8 @@
             $DATABASE_NAME = 'pointometer';
             
             $mysqli = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-            $query = "SELECT * FROM `question-0` ORDER BY score DESC;";
+            $question_id = $_GET['id'];
+            $query = "SELECT * FROM `question-".$question_id."` ORDER BY score DESC;";
             
             if ($result = $mysqli->query($query)) {
                 while ($row = $result->fetch_assoc()) {
